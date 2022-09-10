@@ -1,6 +1,5 @@
 SITE_URL = 'https://www.kupujemprodajem.com'
 CATEGORY = 'kategorija'
-CATEGORIES = [
-    'automobili-delovi-i-alati.591'
-]
+GOODS_CATEGORY = 'category-tree-content-goods'
+CATEGORIES_LIST = 'categoryListLeft'
 
