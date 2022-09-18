@@ -1,5 +1,6 @@
 SITE_URL = 'https://www.kupujemprodajem.com'
-CATEGORY = 'kategorija'
+CATEGORY = ''
 GOODS_CATEGORY = 'category-tree-content-goods'
 CATEGORIES_LIST = 'categoryListLeft'
-
+CATEGORIES = []
+CATEGORY_IDS = []
