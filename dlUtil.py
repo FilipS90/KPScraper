@@ -1,6 +1,6 @@
 import requests
 import shutil
-import constants
+import constants as cnts
 from bs4 import BeautifulSoup
 
 class DownloaderUtil:
@@ -11,7 +11,7 @@ class DownloaderUtil:
         file = None
         soup = BeautifulSoup(requests.get(adUrl).text, 'lxml')
         numberUrl = soup.find('div', class_='phone-number').find_all('img')[1]['src']
-        url = constants.SITE_URL + numberUrl
+        url = cnts.HOME_URL + numberUrl
         numImage = requests.get(url, stream = True)
         try:
             file = open('numbers/number_pngs' +'image' + str(self.fileNum) + '.png', 'wb')
