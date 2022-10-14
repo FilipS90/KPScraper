@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 class Initializer:
 
     def getConstants(self):
-        req = requests.get(cnts.SITE_URL).text
+        req = requests.get(cnts.HOME_URL).text
         soup = BeautifulSoup(req, 'lxml')
         categories = soup.find('div', class_=cnts.CATEGORIES_LIST, id=cnts.GOODS_CATEGORY).find_all('a')
 
