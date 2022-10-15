@@ -1,9 +1,7 @@
-import initializer as scc
-import iteratorService as its
+import initializer as i
+import iteratorService as itr
 import loginService as ls
 
-initializr = scc.Initializer()
-initializr.createSaveDirectory()
-initializr.getConstants()
-ls.LoginService.login()
-iterator = its.IteratorService().interateOverCategories()
+initializr = i.Initializer().init()
+ls.LoginService().login()
+itr.IteratorService().interateOverCategories()

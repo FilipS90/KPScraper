@@ -1,6 +1,7 @@
 import requests
 import constants as cnts
 import dlUtil as dlu
+import initializer as i
 from time import sleep
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -13,7 +14,7 @@ class IteratorService:
     driver = None
 
     def __init__(self):
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        self.driver = cnts.DRIVER
 
     def interateOverCategories(self):
         downloader = dlu.DownloaderUtil()
@@ -23,18 +24,18 @@ class IteratorService:
 
             btn = self.driver.find_element(By.NAME, 'submit[search]')
             self.driver.execute_script("arguments[0].click();",btn)
-            sleep(10)
 
             self.iterateOverSingleCategory(downloader)
+            print('Starting . . .')
 
     def iterateOverSingleCategory(self, downloader):
         while(True):
             adUrls = self.getAdUrls(self.driver.current_url)
             for adUrl in adUrls:
                 print(adUrl.encode('utf-8'))
-                sleep(7.5)
                 print('downloading ad -> ' + adUrl)
-                downloader.downloadImage(cnts.HOME_URL + adUrl)
+                sleep(3)
+                # downloader.downloadImage(cnts.HOME_URL + adUrl)
             listbtn = self.driver.find_element(By.XPATH, "//ul[@class='pagesList clearfix']/li[last()]/a[last()]").click()
 
 

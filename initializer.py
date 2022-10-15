@@ -3,8 +3,17 @@ import os
 import constants as cnts
 from time import sleep
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 class Initializer:
+
+    def init(self):
+        self.createSaveDirectory()
+        self.getConstants()
+        self.chromeDriverCreator()
 
     def getConstants(self):
         req = requests.get(cnts.HOME_URL).text
@@ -27,3 +36,9 @@ class Initializer:
         path = os.path.join(dir_path, folderName)
         if not os.path.exists(path):
             os.mkdir(path)
+
+    def chromeDriverCreator(self):
+        # browser_options = Options()
+        # browser_options.headless = True
+        # options=browser_options
+        cnts.DRIVER = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
