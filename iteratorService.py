@@ -1,5 +1,5 @@
 import requests
-import constants as cnts
+import globals as gl
 import dlUtil as dlu
 import initializer as i
 from time import sleep
@@ -14,12 +14,12 @@ class IteratorService:
     driver = None
 
     def __init__(self):
-        self.driver = cnts.DRIVER
+        self.driver = gl.DRIVER
 
     def interateOverCategories(self):
         downloader = dlu.DownloaderUtil()
-        for idx, category in enumerate(cnts.CATEGORIES):
-            fullUrl = cnts.HOME_URL + '/' + category + '/' + cnts.CATEGORY + '/' + cnts.CATEGORY_IDS[idx]
+        for idx, category in enumerate(gl.CATEGORIES):
+            fullUrl = gl.HOME_URL + '/' + category + '/' + gl.CATEGORY + '/' + gl.CATEGORY_IDS[idx]
             self.driver.get(fullUrl)
 
             btn = self.driver.find_element(By.NAME, 'submit[search]')
@@ -35,7 +35,7 @@ class IteratorService:
                 print(adUrl.encode('utf-8'))
                 print('downloading ad -> ' + adUrl)
                 sleep(3)
-                # downloader.downloadImage(cnts.HOME_URL + adUrl)
+                # downloader.downloadImage(gl.HOME_URL + adUrl)
             listbtn = self.driver.find_element(By.XPATH, "//ul[@class='pagesList clearfix']/li[last()]/a[last()]").click()
 
 
