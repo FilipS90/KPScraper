@@ -18,10 +18,12 @@ class Initializer:
     def getConstants(self):
         req = requests.get(gl.HOME_URL).text
         soup = BeautifulSoup(req, 'lxml')
-        categories = soup.find('div', class_=gl.CATEGORIES_LIST, id=gl.GOODS_CATEGORY).find_all('a')
+        categories = soup.find('div', class_=gl.CATEGORIES_LIST).find_all('a')
 
         for c in categories:
             urlCategoryPart = c['href']
+            if urlCategoryPart == '/poslovi' or urlCategoryPart == '/usluge':
+                continue
             parsed = urlCategoryPart.split('/')
             gl.CATEGORIES.append(parsed[1])
             gl.CATEGORY_IDS.append(parsed[3])

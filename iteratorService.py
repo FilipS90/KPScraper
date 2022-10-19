@@ -22,11 +22,9 @@ class IteratorService:
             fullUrl = gl.HOME_URL + '/' + category + '/' + gl.CATEGORY + '/' + gl.CATEGORY_IDS[idx]
             self.driver.get(fullUrl)
 
-            btn = self.driver.find_element(By.NAME, 'submit[search]')
+            btn = self.driver.find_element(By.XPATH, '//*[@id="__next"]/div/div[1]/div/div[3]/div/div/div/div[2]/form/section/div/div[1]/div/section/section/div/span[2]/button')
             self.driver.execute_script("arguments[0].click();",btn)
-
             self.iterateOverSingleCategory(downloader)
-            print('Starting . . .')
 
     def iterateOverSingleCategory(self, downloader):
         while(True):
@@ -35,8 +33,8 @@ class IteratorService:
                 print(adUrl.encode('utf-8'))
                 print('downloading ad -> ' + adUrl)
                 sleep(3)
-                # downloader.downloadImage(gl.HOME_URL + adUrl)
-            listbtn = self.driver.find_element(By.XPATH, "//ul[@class='pagesList clearfix']/li[last()]/a[last()]").click()
+                downloader.downloadImage(gl.HOME_URL + adUrl)
+            self.changePageNumber()
 
 
     def getAdUrls(self, currentUrl):
@@ -49,3 +47,14 @@ class IteratorService:
             else:
                 resultArr.append(ad['href'])
         return resultArr
+
+    def changePageNumber(self):
+        currentPage = self.driver.current_url
+        newPageNum = None
+        if 'page' in currentPage[-6:]:
+            newPageNum = int(currentPage[-1]) + 1
+        else:
+            newPageNum = 2
+        self.driver.find_element(By.ID, 'goToPageInput').send_keys(str(newPageNum))
+        nextPageBtn = self.driver.find_element(By.XPATH, '//*[@id="__next"]/div/div[3]/div/div/div[2]/section[2]/form/section/div/span/button')
+        self.driver.execute_script("arguments[0].click();", nextPageBtn)

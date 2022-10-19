@@ -1,7 +1,6 @@
 HOME_URL = 'https://www.kupujemprodajem.com'
 CATEGORY = ''
-GOODS_CATEGORY = 'category-tree-content-goods'
-CATEGORIES_LIST = 'categoryListLeft'
+CATEGORIES_LIST = 'CategoryList_list__a7SOH'
 CATEGORIES = []
 CATEGORY_IDS = []
 DRIVER = None
