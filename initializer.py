@@ -18,7 +18,7 @@ class Initializer:
     def getConstants(self):
         req = requests.get(gl.HOME_URL).text
         soup = BeautifulSoup(req, 'lxml')
-        categories = soup.find('div', class_=gl.CATEGORIES_LIST).find_all('a')
+        categories = soup.find('div', class_=gl.CATEGORIES_LIST_CLASS).find_all('a')
 
         for c in categories:
             urlCategoryPart = c['href']

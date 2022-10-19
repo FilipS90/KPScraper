@@ -12,8 +12,6 @@ class LoginService:
     def login(self):
         driver = gl.DRIVER
         driver.get(gl.HOME_URL)
-        # xButton = driver.find_element(By.XPATH, '//*[@id="bodyTag"]/div[9]/div/div[2]')
-        # driver.execute_script("arguments[0].click();",xButton)
         loginBtn = driver.find_element(By.XPATH, '//*[@id="__next"]/div/div[3]/div/div/div[1]/div[1]/section/div/div/ul/li[2]/button')
         driver.execute_script("arguments[0].click();", loginBtn)
         driver.find_element(By.XPATH, '//*[@id="email"]').send_keys('goran.47.misic@gmail.com')
