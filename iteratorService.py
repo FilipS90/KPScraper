@@ -4,10 +4,8 @@ import dlUtil as dlu
 import initializer as i
 from time import sleep
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 class IteratorService:
 
@@ -28,18 +26,18 @@ class IteratorService:
 
     def iterateOverSingleCategory(self, downloader):
         while(True):
-            adUrls = self.getAdUrls(self.driver.current_url)
+            adUrls = self.getAdsFromCurrentPage(self.driver.current_url)
             for adUrl in adUrls:
                 print(adUrl.encode('utf-8'))
                 print('downloading ad -> ' + adUrl)
-                sleep(3)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
+                sleep(3)
             self.changePageNumber()
 
 
-    def getAdUrls(self, currentUrl):
+    def getAdsFromCurrentPage(self, currentUrl):
         soup = BeautifulSoup(requests.get(currentUrl).text, 'lxml')
-        adUrlsArray = soup.find_all(class_='adName')
+        adUrlsArray = soup.find('div', class_='Grid_col-lg-10__tIdze Grid_col-xs__6oZvU Grid_col-sm__hxOHE Grid_col-md__1bRJZ').find_all('a', class_='Link_link__J4Qd8 Link_inherit___qXEP AdGoldHeader_goldHeader__t_ira')
         resultArr = []
         for ad in adUrlsArray:
             if '?' in ad['href']:

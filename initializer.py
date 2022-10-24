@@ -1,7 +1,6 @@
 import requests
 import os
 import globals as gl
-from time import sleep
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,8 +9,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 class Initializer:
 
-    def init(self):
-        self.createSaveDirectory()
+    def setup(self):
+        self.createSaveFile()
         self.getConstants()
         self.chromeDriverCreator()
 
@@ -32,15 +31,15 @@ class Initializer:
             gl.CATEGORY = urlCategoryPart = c['href'].split('/')[2]
             break
 
-    def createSaveDirectory(self):
+    def createSaveFile(self):
         dir_path = os.getcwd()
-        folderName = 'numbers'
-        path = os.path.join(dir_path, folderName)
+        fileName = 'phone_numbers'
+        path = os.path.join(dir_path, fileName)
         if not os.path.exists(path):
-            os.mkdir(path)
+            open(path, mode='a').close()
+        gl.FILE_PATH = path
 
     def chromeDriverCreator(self):
         # browser_options = Options()
         # browser_options.headless = True
-        # options=browser_options
-        gl.DRIVER = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        gl.DRIVER = webdriver.Chrome(service=Service(ChromeDriverManager().install())) # options=browser_options
