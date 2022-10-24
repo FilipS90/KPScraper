@@ -14,7 +14,7 @@ class DownloaderUtil:
         file = None
         try:
             file = open(gl.FILE_PATH, 'a')
-            file.write(adPhoneNumber.text.strip() + "\n")
+            file.write(adPhoneNumber.text.replace(" ", "") + "\n")
         except:
             print("POSSIBLY HANDLE FAIL SCENARIO")
         finally:
