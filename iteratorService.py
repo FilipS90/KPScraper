@@ -2,6 +2,7 @@ import requests
 import globals as gl
 import dlUtil as dlu
 import initializer as i
+import random
 from time import sleep
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
@@ -31,7 +32,7 @@ class IteratorService:
                 print(adUrl.encode('utf-8'))
                 print('downloading ad -> ' + adUrl)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
-                sleep(3)
+                sleep(random.randint(3,13))
             self.changePageNumber()
 
 

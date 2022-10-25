@@ -1,15 +1,11 @@
 #!/bin/bash
 
-israel=true
+vpn_servers=(IS-IL#1 IL#5 IL#6 IL#7 IL#8 CH-IL#1 IL#9 IL#10 IL#11 IL#12 CY#1 CY#2 CY#3 CY#4 CH-CY#1)
+index=0
 
-while true
-do
-  if $israel; then
-    protonvpn-cli connect CH-CY#1
-    israel=false
-  else
-    protonvpn-cli connect IS-IL#1
-    israel=true
-  fi
-  sleep 7
-done
+if [[ index -eq ${#vpn_servers[@]} ]];
+then
+  index=0
+fi
+protonvpn-cli connect ${vpn_servers[$index]}
+index=$((index+1))
