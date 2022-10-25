@@ -1,6 +1,7 @@
 import requests
 import os
 import globals as gl
+from subprocess import call
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,6 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 class Initializer:
 
     def setup(self):
+        self.connectToVpn
         self.createSaveFile()
         self.getConstants()
         self.chromeDriverCreator()
@@ -43,3 +45,6 @@ class Initializer:
         # browser_options = Options()
         # browser_options.headless = True
         gl.DRIVER = webdriver.Chrome(service=Service(ChromeDriverManager().install())) # options=browser_options
+
+    def connectToVpn(self):
+        call('protonvpn-cli connect IS-IL#1')

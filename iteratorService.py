@@ -3,6 +3,7 @@ import globals as gl
 import dlUtil as dlu
 import initializer as i
 import random
+from subprocess import call
 from time import sleep
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
@@ -11,6 +12,7 @@ from selenium.webdriver.common.by import By
 class IteratorService:
 
     driver = None
+    saveCounter = 0
 
     def __init__(self):
         self.driver = gl.DRIVER
@@ -33,6 +35,10 @@ class IteratorService:
                 print('downloading ad -> ' + adUrl)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
                 sleep(random.randint(3,13))
+                if self.saveCounter == 50:
+                    call('proton-script')
+                    self.saveCounter = 0
+                self.saveCounter += 1
             self.changePageNumber()
 
 
