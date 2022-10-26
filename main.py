@@ -1,7 +1,7 @@
 import initializer as i
 import iteratorService as itr
-import loginService as ls
+import siteLoginService as ls
 
 initializr = i.Initializer().setup()
-ls.LoginService().login()
+ls.SiteLoginService().login()
 itr.IteratorService().interateOverCategories()

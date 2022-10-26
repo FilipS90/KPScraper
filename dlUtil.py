@@ -1,7 +1,4 @@
-import requests
-import shutil
 import globals as gl
-from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 
 class DownloaderUtil:
