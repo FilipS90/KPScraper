@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO - if index.txt doesn't exist, create and append 1
+
 vpn_servers=(IS-IL#1 IL#5 IL#6 IL#7 IL#8 CH-IL#1 IL#9 IL#10 IL#11 IL#12 CY#1 CY#2 CY#3 CY#4 CH-CY#1)
 index=$(<index.txt)
 

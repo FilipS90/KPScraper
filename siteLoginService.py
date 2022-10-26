@@ -1,7 +1,7 @@
 import globals as gl
 from selenium.webdriver.common.by import By
 
-class LoginService:
+class SiteLoginService:
 
     def login(self):
         driver = gl.DRIVER
