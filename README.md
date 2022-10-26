@@ -3,6 +3,7 @@
 TODO:
 
 - try to run proton-script as string
+- save point of current progress
 - hashmap for numbers;
 - logger service
 

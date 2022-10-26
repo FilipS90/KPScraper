@@ -24,11 +24,11 @@ class IteratorService:
 
             btn = self.driver.find_element(By.XPATH, '//*[@id="__next"]/div/div[1]/div/div[3]/div/div/div/div[2]/form/section/div/div[1]/div/section/section/div/span[2]/button')
             self.driver.execute_script("arguments[0].click();",btn)
-            self.iterateOverSingleCategory(downloader)
+            self.iterateAdCategory(downloader)
 
-    def iterateOverSingleCategory(self, downloader):
+    def iterateAdCategory(self, downloader):
         while(True):
-            adUrls = self.getAdsFromCurrentPage(self.driver.current_url)
+            adUrls = self.getAdUrlsFromCurrentPage(self.driver.current_url)
             for adUrl in adUrls:
                 print('downloading ad -> ' + adUrl)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
@@ -37,7 +37,7 @@ class IteratorService:
             self.changePageNumber()
 
 
-    def getAdsFromCurrentPage(self, currentUrl):
+    def getAdUrlsFromCurrentPage(self, currentUrl):
         soup = BeautifulSoup(requests.get(currentUrl).text, 'lxml')
         adUrlsArray = soup.find('div', class_='Grid_col-lg-10__tIdze Grid_col-xs__6oZvU Grid_col-sm__hxOHE Grid_col-md__1bRJZ').find_all('a', class_='Link_link__J4Qd8 Link_inherit___qXEP AdGoldHeader_goldHeader__t_ira')
         resultArr = []
