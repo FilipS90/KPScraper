@@ -1,7 +1,6 @@
 import requests
 import globals as gl
 import dlUtil as dlu
-import initializer as i
 import random
 from subprocess import call
 from time import sleep
@@ -31,14 +30,10 @@ class IteratorService:
         while(True):
             adUrls = self.getAdsFromCurrentPage(self.driver.current_url)
             for adUrl in adUrls:
-                print(adUrl.encode('utf-8'))
                 print('downloading ad -> ' + adUrl)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
-                sleep(random.randint(3,13))
-                if self.saveCounter == 50:
-                    call('proton-script')
-                    self.saveCounter = 0
-                self.saveCounter += 1
+                sleep(random.randint(3,10))
+                self.changeVpnOrIncrement(self.saveCounter)
             self.changePageNumber()
 
 
@@ -63,3 +58,10 @@ class IteratorService:
         self.driver.find_element(By.ID, 'goToPageInput').send_keys(str(newPageNum))
         nextPageBtn = self.driver.find_element(By.XPATH, '//*[@id="__next"]/div/div[3]/div/div/div[2]/section[2]/form/section/div/span/button')
         self.driver.execute_script("arguments[0].click();", nextPageBtn)
+
+    def changeVpnOrIncrement(self, saveCounter):
+        if saveCounter == 50:
+            call('proton-script')
+            saveCounter = 0
+        else:
+            saveCounter += 1
