@@ -11,7 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 class Initializer:
 
     def setup(self):
-        self.connectToVpn()
+        # self.connectToVpn()
         self.createSaveFile()
         self.getConstants()
         self.chromeDriverCreator()
