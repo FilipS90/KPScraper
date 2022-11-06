@@ -12,7 +12,7 @@ class Initializer:
 
     def setup(self):
         # self.connectToVpn()
-        self.createSaveFile()
+        self.createVPNIndexAndPhoneNumbersFiles()
         self.getConstants()
         self.chromeDriverCreator()
 
@@ -33,13 +33,23 @@ class Initializer:
             gl.CATEGORY = urlCategoryPart = c['href'].split('/')[2]
             break
 
-    def createSaveFile(self):
+    def createVPNIndexAndPhoneNumbersFiles(self):
         dir_path = os.getcwd()
         fileName = 'phone_numbers'
         path = os.path.join(dir_path, fileName)
         if not os.path.exists(path):
             open(path, mode='a').close()
         gl.FILE_PATH = path
+        indexFileName = 'vpn-arr-index'
+        path = os.path.join(dir_path, indexFileName)
+        if not os.path.exists(path):
+            file = None
+            try:
+                file = open(path, mode='a')
+                file.write('1')
+            finally:
+                file.close()
+
 
     def chromeDriverCreator(self):
         # browser_options = Options()
@@ -47,6 +57,6 @@ class Initializer:
         gl.DRIVER = webdriver.Chrome(service=Service(ChromeDriverManager().install())) # options=browser_options
 
     def connectToVpn(self):
-        bashCommand = 'protonvpn-cli connect IS-IL#1'
+        bashCommand = 'protonvpn-cli connect CY#1'
         output = subprocess.check_output(bashCommand, shell=True)
         print(output)
