@@ -55,9 +55,12 @@ class IteratorService:
             newPageNum = int(currentPage[-1]) + 1
         else:
             newPageNum = 2
-        self.driver.find_element(By.ID, 'goToPageInput').send_keys(str(newPageNum))
-        nextPageBtn = self.driver.find_element(By.XPATH, '//*[@id="__next"]/div/div[3]/div/div/div[2]/section[2]/form/section/div/span/button')
-        self.driver.execute_script("arguments[0].click();", nextPageBtn)
+            self.driver.get(currentPage + '&page=' + str(newPageNum))
+            return
+
+        forUrlsOtherThanFirstPage = currentPage.split('page=')
+        self.driver.get(forUrlsOtherThanFirstPage[0] + 'page=' + str(newPageNum))
+        
 
     def changeVpnOrIncrement(self, saveCounter):
         if saveCounter == 50:
