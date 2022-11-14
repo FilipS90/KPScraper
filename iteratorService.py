@@ -31,9 +31,8 @@ class IteratorService:
         while(True):
             adPageUrl = self.driver.current_url
             adUrls = self.getAdUrlsFromCurrentPage(adPageUrl)
-            print('printing ad urls')
-            print(adUrls)
             for adUrl in adUrls:
+                print('downloading ad nummber ->> ' + adUrl)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
                 sleep(random.randint(2,5))
                 self.changeVpnOrIncrement(self.saveCounter)
@@ -54,19 +53,16 @@ class IteratorService:
         return resultArr
 
     def changePageNumber(self, adPageUrl):
+        print('--- new page ---')
         newPageNum = None
         if 'page' in adPageUrl[-6:]:
             newPageNum = int(adPageUrl[-1]) + 1
         else:
             newPageNum = 2
-            print('first change')
-            print(adPageUrl + '&page=' + str(newPageNum))
             self.driver.get(adPageUrl + '&page=' + str(newPageNum))
             return
 
         forUrlsOtherThanFirstPage = adPageUrl.split('page=')
-        print('next page')
-        print(forUrlsOtherThanFirstPage[0] + 'page=' + str(newPageNum))
         self.driver.get(forUrlsOtherThanFirstPage[0] + 'page=' + str(newPageNum))
         
 
