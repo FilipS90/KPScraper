@@ -39,7 +39,6 @@ class IteratorService:
                 sleep(random.randint(2,5))
                 self.changeVpnOrIncrement(self.saveCounter)
             self.changePageNumber(adPageUrl)
-            print(self.fetchMaxAdPage())
             currentAdPageNumberInCategory += 1
             if currentAdPageNumberInCategory > maxAdPageInCategory:
                 return
