@@ -29,7 +29,7 @@ class IteratorService:
 
     def iterateAdCategory(self, downloader):
         currentAdPageNumberInCategory = 0
-        maxAdPageInCategory = 1
+        maxAdPageInCategory = self.fetchMaxAdPage()
         while(True):
             adPageUrl = self.driver.current_url
             adUrls = self.getAdUrlsFromCurrentPage(adPageUrl)
