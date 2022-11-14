@@ -28,6 +28,8 @@ class IteratorService:
             self.iterateAdCategory(downloader)
 
     def iterateAdCategory(self, downloader):
+        currentAdPageNumberInCategory = 0
+        maxAdPageInCategory = 1
         while(True):
             adPageUrl = self.driver.current_url
             adUrls = self.getAdUrlsFromCurrentPage(adPageUrl)
@@ -37,6 +39,10 @@ class IteratorService:
                 sleep(random.randint(2,5))
                 self.changeVpnOrIncrement(self.saveCounter)
             self.changePageNumber(adPageUrl)
+            print(self.fetchMaxAdPage())
+            currentAdPageNumberInCategory += 1
+            if currentAdPageNumberInCategory > maxAdPageInCategory:
+                return
 
 
     def getAdUrlsFromCurrentPage(self, currentUrl):
@@ -64,6 +70,12 @@ class IteratorService:
 
         forUrlsOtherThanFirstPage = adPageUrl.split('page=')
         self.driver.get(forUrlsOtherThanFirstPage[0] + 'page=' + str(newPageNum))
+
+    def fetchMaxAdPage(self):
+        req = requests.get(self.driver.current_url).text
+        soup = BeautifulSoup(req, 'lxml')
+        maxPageStr = soup.find('ul', class_='Pagination_pagination__81Zkn').find_all('span', class_='Button_children__3mYJw')[5]
+        return int(maxPageStr.text)
         
 
     def changeVpnOrIncrement(self, saveCounter):
