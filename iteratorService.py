@@ -37,7 +37,7 @@ class IteratorService:
                 print(adUrl)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
                 sleep(random.randint(2,5))
-                self.changeVpnOrIncrement(self.saveCounter)
+                self.changeVpnOrIncrement()
             self.changePageNumber(adPageUrl)
             currentAdPageNumberInCategory += 1
             if currentAdPageNumberInCategory > maxAdPageInCategory:
