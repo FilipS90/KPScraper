@@ -34,7 +34,7 @@ class IteratorService:
             adPageUrl = self.driver.current_url
             adUrls = self.getAdUrlsFromCurrentPage(adPageUrl)
             for adUrl in adUrls:
-                print('downloading ad nummber ->> ' + adUrl)
+                print(adUrl)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
                 sleep(random.randint(2,5))
                 self.changeVpnOrIncrement(self.saveCounter)
@@ -77,9 +77,9 @@ class IteratorService:
         return int(maxPageStr.text)
         
 
-    def changeVpnOrIncrement(self, saveCounter):
-        if saveCounter == 50:
+    def changeVpnOrIncrement(self):
+        if self.saveCounter == 50:
             call('proton-script')
-            saveCounter = 0
+            self.saveCounter = 0
         else:
-            saveCounter += 1
+            self.saveCounter += 1
