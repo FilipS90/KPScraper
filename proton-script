@@ -1,7 +1,7 @@
 #!/bin/bash
 
 vpn_servers=(CY#1 CY#2 CY#3 CY#4 CH-CY#1 IS-IL#1 IL#5 IL#6 IL#7 IL#8 CH-IL#1 IL#9 IL#10 IL#11 IL#12)
-index=$(<index.txt)
+index=$(<vpn-arr-index)
 
 protonvpn-cli connect ${vpn_servers[$index]}
 index=$((index+1))
@@ -9,4 +9,4 @@ if [[ index -eq ${#vpn_servers[@]} ]];
 then
   index=0
 fi
-echo $index > index.txt
+echo $index > vpn-arr-index
