@@ -36,7 +36,7 @@ class IteratorService:
             for adUrl in adUrls:
                 print(adUrl)
                 downloader.downloadImage(gl.HOME_URL + adUrl)
-                sleep(random.randint(2,5))
+                sleep(random.randint(2,5)) # slow down execution, don't trigger prompt for too many requests
                 self.changeVpnOrIncrement()
             self.changePageNumber(adPageUrl)
             currentAdPageNumberInCategory += 1
