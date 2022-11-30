@@ -12,7 +12,7 @@ class Initializer:
 
     def setup(self):
         # self.connectToVpn()
-        self.createVPNIndexAndPhoneNumbersFiles()
+        self.createFiles()
         self.getConstants()
         self.chromeDriverCreator()
 
@@ -33,9 +33,9 @@ class Initializer:
             gl.CATEGORY = urlCategoryPart = c['href'].split('/')[2]
             break
 
-    def createVPNIndexAndPhoneNumbersFiles(self):
+    def createFiles(self):
         dir_path = os.getcwd()
-        fileName = 'phone_numbers'
+        fileName = 'phone-numbers'
         path = os.path.join(dir_path, fileName)
         if not os.path.exists(path):
             open(path, mode='a').close()

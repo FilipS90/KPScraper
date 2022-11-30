@@ -19,6 +19,7 @@ class IteratorService:
     def interateOverCategories(self):
         downloader = dlu.DownloaderUtil()
         for idx, category in enumerate(gl.CATEGORIES):
+            gl.CURRENT_CATEGORY_IDX = idx
             fullUrl = gl.HOME_URL + '/' + category + '/' + gl.CATEGORY + '/' + gl.CATEGORY_IDS[idx]
             self.driver.get(fullUrl)
 
@@ -28,7 +29,7 @@ class IteratorService:
             self.iterateAdCategory(downloader)
 
     def iterateAdCategory(self, downloader):
-        currentAdPageNumberInCategory = 0
+        currentAdPageNumberInCategory = 1
         maxAdPageInCategory = self.fetchMaxAdPage()
         while(True):
             adPageUrl = self.driver.current_url
