@@ -5,4 +5,4 @@ CATEGORY_IDS = []
 CURRENT_CATEGORY_IDX=None
 DRIVER = None
 FILE_PATH = ''
-HOME_URL = 'https://www.kupujemprodajem.com'
+HOME_URL = 'https://kupujemprodajem.com'

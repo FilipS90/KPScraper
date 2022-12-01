@@ -35,11 +35,17 @@ class Initializer:
 
     def createFiles(self):
         dir_path = os.getcwd()
-        fileName = 'phone-numbers'
-        path = os.path.join(dir_path, fileName)
+        phonesFileName = 'phone-numbers'
+        path = os.path.join(dir_path, phonesFileName)
         if not os.path.exists(path):
             open(path, mode='a').close()
         gl.FILE_PATH = path
+
+        saveProgressFileName = 'save-progress'
+        path = os.path.join(dir_path, saveProgressFileName)
+        if not os.path.exists(path):
+            open(path, mode='a').close()
+
         indexFileName = 'vpn-arr-index'
         path = os.path.join(dir_path, indexFileName)
         if not os.path.exists(path):
