@@ -4,7 +4,7 @@ My cancelled project of web scrapping phone numbers from KupujemProdajem. It had
 
 TODO:
 
-- create hashmap with usernames, to speed up process
+- create cache with usernames
 - make KPScraper completely autonomous
   1) copy proton-script to /bin in Dockerfile
   2) install protonvpn-cli in Dockerfile
